@@ -3,8 +3,13 @@ return {
   "tpope/vim-surround",
   "tpope/vim-commentary",
   "raimondi/delimitmate",
-  "mattn/emmet-vim",
   "ggandor/lightspeed.nvim",
+  {
+    "mattn/emmet-vim",
+    init = function ()
+      vim.g.user_emmet_leader_key = "<C-z>"
+    end
+  },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
