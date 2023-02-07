@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup({
+  "tpope/vim-fugitive",
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
@@ -79,6 +80,7 @@ require("lazy").setup({
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
@@ -87,6 +89,13 @@ require("lazy").setup({
     cmd = "Neotree",
     keys = {
       { "<leader>e", "<cmd>Neotree toggle=true<cr>", desc = "N[e]o-tree" }
+    },
+    opts = {
+      window = {
+        filesystem = {
+          hijack_netrw_behavior = "open_current"
+        }
+      }
     }
   },
   {
@@ -115,7 +124,7 @@ require("lazy").setup({
     config = function()
       local opts = { noremap = true, silent = true }
 
-      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+      vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
       vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
@@ -146,11 +155,24 @@ require("lazy").setup({
         debounce_text_changes = 150,
       }
 
-      require("mason-lspconfig").setup_handlers({ 
+      local lspconfig = require("lspconfig")
+
+      require("mason-lspconfig").setup_handlers({
         function(server_name)
-          require("lspconfig")[server_name].setup({
+          lspconfig[server_name].setup({
             on_attach = on_attach,
 	    flags = lsp_flags
+	  })
+	end,
+	["sumneko_lua"] = function()
+	  lspconfig.sumneko_lua.setup({
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { "vim" }
+		}
+              }
+	    }
 	  })
 	end
       })
