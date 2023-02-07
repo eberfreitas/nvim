@@ -13,5 +13,8 @@ return {
       "css",
       "scss"
     },
+    highlight = {
+      enable = true
+    }
   }
 }
