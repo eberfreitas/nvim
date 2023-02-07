@@ -1,11 +1,12 @@
 return {
   {
-    "williamboman/mason.nvim",
-    opts = {},
-    cmd = "Mason"
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/cmp-nvim-lsp"
+    },
     opts = {
       ensure_installed = {
         "sumneko_lua",
@@ -15,23 +16,14 @@ return {
         "html",
         "cssls",
       }
-    }
-  },
-  {
-    "neovim/nvim-lspconfig",
-    event = "BufReadPre",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp"
     },
-    config = function()
-      local opts = { noremap = true, silent = true }
+    config = function(_, opts)
+      local bindingOpts = { noremap = true, silent = true }
 
-      vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-      vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, opts)
-      vim.keymap.set("n", "]g", vim.diagnostic.goto_next, opts)
-      vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
+      vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, bindingOpts)
+      vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, bindingOpts)
+      vim.keymap.set("n", "]g", vim.diagnostic.goto_next, bindingOpts)
+      vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, bindingOpts)
 
       local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -57,26 +49,20 @@ return {
 
       local lsp_flags = { debounce_text_changes = 150 }
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require("lspconfig")
+
+      require("mason").setup({})
+      require("mason-lspconfig").setup({ ensure_installed = opts.ensure_installed })
 
       require("mason-lspconfig").setup_handlers({
         function(server_name)
-          lspconfig[server_name].setup({
+          require("lspconfig")[server_name].setup({
             on_attach = on_attach,
             flags = lsp_flags,
             capabilities = capabilities
           })
         end,
-        ["elixirls"] = function ()
-          lspconfig.elixirls.setup({
-            on_attach = on_attach,
-            flags = lsp_flags,
-            capabilities = capabilities,
-            cmd = { "elixir-ls" }
-          })
-        end,
         ["sumneko_lua"] = function()
-          lspconfig.sumneko_lua.setup({
+          require("lspconfig").sumneko_lua.setup({
             on_attach = on_attach,
             flags = lsp_flags,
             capabilities = capabilities,
