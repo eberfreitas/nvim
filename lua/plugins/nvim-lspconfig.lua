@@ -77,5 +77,25 @@ return {
         end
       })
     end
-  }
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim"
+    },
+    opts = function()
+      local null_ls = require("null-ls")
+
+      return {
+        sources = {
+          null_ls.builtins.code_actions.eslint_d,
+          null_ls.builtins.formatting.prettierd,
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.elm_format,
+          null_ls.builtins.formatting.mix,
+        },
+      }
+    end,
+  },
 }
