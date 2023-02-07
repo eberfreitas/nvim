@@ -1,6 +1,9 @@
 {
+  "delimitmate": { "branch": "master", "commit": "537a1da0fa5eeb88640425c37e545af933c56e1b" },
+  "emmet-vim": { "branch": "master", "commit": "def5d57a1ae5afb1b96ebe83c4652d1c03640f4d" },
   "gruvbox.nvim": { "branch": "main", "commit": "211ce2ee4c9bb94b0426375543889f1f6fcfca89" },
   "lazy.nvim": { "branch": "main", "commit": "326556008a1574389be7fa9d670abada10ce1323" },
+  "lightspeed.nvim": { "branch": "main", "commit": "299eefa6a9e2d881f1194587c573dad619fdb96f" },
   "lualine.nvim": { "branch": "master", "commit": "0050b308552e45f7128f399886c86afefc3eb988" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "53f3a8bdcb77d4a95b082fd57e12173f353c6c3e" },
   "mason.nvim": { "branch": "main", "commit": "4772aecbf1729787f5679dabffc0a000f7cb9aae" },
@@ -11,5 +14,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "ade34ca7d19543904b28b903e606be8930fb9ee3" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a1bd6866b539afdaa25305626c7aa6049b805d67" },
-  "vim-fugitive": { "branch": "master", "commit": "2019e0e4139390f485a024d7a2411218b004a5b3" }
+  "vim-commentary": { "branch": "master", "commit": "e87cd90dc09c2a203e13af9704bd0ef79303d755" },
+  "vim-fugitive": { "branch": "master", "commit": "2019e0e4139390f485a024d7a2411218b004a5b3" },
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
 }

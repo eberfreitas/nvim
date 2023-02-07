@@ -17,6 +17,11 @@ vim.g.mapleader = " "
 
 require("lazy").setup({
   "tpope/vim-fugitive",
+  "tpope/vim-surround",
+  "tpope/vim-commentary",
+  "raimondi/delimitmate",
+  "mattn/emmet-vim",
+  "ggandor/lightspeed.nvim",
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
@@ -31,18 +36,18 @@ require("lazy").setup({
     opts = {
       ensure_installed = {
         "c",
-	"lua",
-	"vim",
-	"help",
-	"elm",
-	"elixir",
-	"javascript",
-	"typescript",
-	"html",
-	"css",
-	"scss",
-	"ruby",
-	"rust"
+        "lua",
+        "vim",
+        "help",
+        "elm",
+        "elixir",
+        "javascript",
+        "typescript",
+        "html",
+        "css",
+        "scss",
+        "ruby",
+        "rust"
       },
     }
   },
@@ -107,11 +112,11 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-	"sumneko_lua",
-	"elmls",
-	"tsserver",
-	"html",
-	"cssls",
+        "sumneko_lua",
+        "elmls",
+        "tsserver",
+        "html",
+        "cssls",
       }
     }
   },
@@ -161,21 +166,31 @@ require("lazy").setup({
         function(server_name)
           lspconfig[server_name].setup({
             on_attach = on_attach,
-	    flags = lsp_flags
-	  })
-	end,
-	["sumneko_lua"] = function()
-	  lspconfig.sumneko_lua.setup({
+            flags = lsp_flags
+          })
+        end,
+        ["sumneko_lua"] = function()
+          lspconfig.sumneko_lua.setup({
             settings = {
               Lua = {
                 diagnostics = {
                   globals = { "vim" }
-		}
+                }
               }
-	    }
-	  })
-	end
+            }
+          })
+        end
       })
     end
   }
 })
+
+vim.cmd([[set hidden]])
+vim.cmd([[set number]])
+vim.cmd([[set relativenumber]])
+vim.cmd([[set list]])
+vim.cmd([[set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»]])
+vim.cmd([[set ruler]])
+vim.cmd([[set nosmd]])
+vim.cmd([[set cursorline]])
+vim.cmd([[set cc=120]])
