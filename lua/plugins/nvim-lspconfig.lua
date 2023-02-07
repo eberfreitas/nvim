@@ -10,6 +10,7 @@ return {
       ensure_installed = {
         "sumneko_lua",
         "elmls",
+        "elixirls",
         "tsserver",
         "html",
         "cssls",
@@ -66,8 +67,19 @@ return {
             capabilities = capabilities
           })
         end,
+        ["elixirls"] = function ()
+          lspconfig.elixirls.setup({
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+            cmd = { "elixir-ls" }
+          })
+        end,
         ["sumneko_lua"] = function()
           lspconfig.sumneko_lua.setup({
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
             settings = {
               Lua = {
                 diagnostics = {
