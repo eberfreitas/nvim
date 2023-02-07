@@ -129,7 +129,7 @@ require("lazy").setup({
       vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
-      local on_attach = function(client, bufnr)
+      local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
