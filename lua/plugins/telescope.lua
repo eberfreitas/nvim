@@ -7,8 +7,8 @@ return {
 	cmd = "Telescope",
 	keys = {
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[F]ind [f]iles" },
-		{ "<leader>fg", "<cmd>Telescope find_files<cr>", desc = "[F]ind [g]it files" },
-		{ "<leader>p", "<cmd>Telescope find_files<cr>", desc = "Find git files - alternative" },
+		{ "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "[F]ind [g]it files" },
+		{ "<leader>p", "<cmd>Telescope git_files<cr>", desc = "Find git files - alternative" },
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[F]ind [b]uffers" },
 		{ "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
 		{ "<leader>;", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
