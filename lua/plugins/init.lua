@@ -2,6 +2,7 @@ return {
 	"tpope/vim-fugitive",
 	"tpope/vim-surround",
 	"tpope/vim-commentary",
+	"tpope/vim-sleuth",
 	"raimondi/delimitmate",
 	"ggandor/lightspeed.nvim",
 	{
@@ -17,5 +18,19 @@ return {
 		config = function()
 			vim.cmd.colorscheme("gruvbox")
 		end,
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		opts = {},
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {},
 	},
 }
