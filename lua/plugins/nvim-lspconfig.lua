@@ -9,7 +9,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"sumneko_lua",
+				"lua_ls",
 				"elmls",
 				"elixirls",
 				"tsserver",
@@ -63,8 +63,8 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-				["sumneko_lua"] = function()
-					require("lspconfig").sumneko_lua.setup({
+				["lua_ls"] = function()
+					require("lspconfig").lua_ls.setup({
 						on_attach = on_attach,
 						flags = lsp_flags,
 						capabilities = capabilities,
